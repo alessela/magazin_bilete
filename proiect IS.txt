@@ -1,0 +1,13 @@
+1) https://www.w3schools.com/js
+2) https://www.w3schools.com/html
+3) https://stackoverflow.com/questions/23310736/two-p-tag-in-same-line
+4) https://www.youtube.com/watch?v=kzFJ7St_ma8&ab_channel=1BestCsharpblog
+5) https://www.tutorialspoint.com/online_html_editor.php
+6) https://stackoverflow.com/questions/5150363/onchange-open-url-via-select-jquery
+7) https://www.w3schools.com/jsref/jsref_concat_string.asp
+8) https://www.youtube.com/watch?v=lThuZY0-S_8&ab_channel=Telusko
+9) https://java2blog.com/python-list-to-set/
+10) https://www.geeksforgeeks.org/python-convert-set-into-a-list/
+11) https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/month
+12) https://stackoverflow.com/questions/16434174/only-allow-certain-characters-to-be-entered-in-html-textinput
+13) https://stackoverflow.com/questions/13199606/html-simple-not-blank-pattern/13199672
