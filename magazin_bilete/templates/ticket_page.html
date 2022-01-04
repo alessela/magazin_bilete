@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilete Accesibile - plata bilet</title>
+</head>
+
+<body style="background-color:dodgerblue; font-family:arial,serif">
+    <div style="display: flex; justify-content: space-between;">
+        <a href="http://127.0.0.1:8000/"><h1>Bilete Accesibile</h1></a>
+        <p> Bine ai venit, <b>{{ user.first_name }} {{ user.last_name }}</b>! <a href="http://127.0.0.1:8000/login">DELOGHEAZA-TE</a> |
+        <a href="http://127.0.0.1:8000/account">DETALII CONT</a></p>
+    </div>
+
+    <h2>Comanda ta</h2>
+    <p><b>{{ ticket.event }}</b><br>Locatie: {{ ticket.event.locatie }}<br>Pret: {{ ticket.pret }} lei</p>
+
+    <center>
+        <h3>Detalii plata</h3>
+        <form method="post" action="/ok">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Numar card:</td>
+                <td>
+                    <input type="text" pattern="[0-9]+" required="required">
+                </td>
+            </tr>
+            <tr>
+                <td>Data expirare card:</td>
+                <td>
+                    <input type="month" required="required">
+                </td>
+            </tr>
+            <tr>
+                <td>CVV:</td>
+                <td>
+                    <input type="text" required="required">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Efectueaza plata">
+                </td>
+            </tr>
+        </table>
+        </form>
+    </center>
+</body>
+</html>

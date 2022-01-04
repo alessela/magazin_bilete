@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilete Accesibile - Cont</title>
+</head>
+<body style="background-color:dodgerblue; font-family:arial,serif">
+<div style="display: flex; justify-content: space-between;">
+    <a href="http://127.0.0.1:8000/"><h1>Bilete Accesibile</h1></a>
+            <p> Bine ai venit, <b>{{ user.first_name }} {{ user.last_name }}</b>! <a href="http://127.0.0.1:8000/login">DELOGHEAZA-TE</a></p>
+</div>
+    <center>
+        <h2>Detalii cont</h2>
+        <h3>Date personale</h3>
+        <form method="post" action="">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Nume de utilizator:</td>
+                    <td>
+                        <input type="text" required="required" name="username" value="{{ user.username }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Parola:</td>
+                    <td>
+                        <input type="password" required="required" name="password" value="{{ user.password }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Prenume:</td>
+                    <td>
+                        <input type="text" required="required" name="first_name" value="{{ user.first_name }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nume:</td>
+                    <td>
+                        <input type="text" required="required" name="last_name" value="{{ user.last_name }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" required="required" name="email" value="{{ user.email }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="login" value="Schimba datele personale">
+                    </td>
+                    <td>
+                            <a href="/stergecont">Sterge contul</a>
+                    </td>
+                </tr>
+            </table>
+             <p style="font-size:16px; color:red">{{ err }}</p>
+             <p style="font-size:16px; color:green">{{ msg }}</p>
+        </form>
+    </center>
+    <h3>Bilete cumparate</h3>
+    {% block tickets_block %}
+        <ul>
+            {% for ticket in tickets %}
+                <li>
+                    <b>Bilet #{{ ticket.id }}</b> {{ ticket.tip_bilet }}, {{ ticket.tip_bilet.event }}, {{ ticket.tip_bilet.event.locatie }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
+</body>
+</html>

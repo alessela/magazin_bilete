@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BileteAccesibile - Inregistrare</title>
+</head>
+
+<body style="background-color:dodgerblue; font-family:arial,serif">
+    <center>
+        <h1>Inregistrare</h1>
+        <form method="post" action="/..">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Nume de utilizator:</td>
+                    <td>
+                        <input type="text" required="required" name="username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Parola:</td>
+                    <td>
+                        <input type="password" required="required" name="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Prenume:</td>
+                    <td>
+                        <input type="text" required="required" name="first_name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nume:</td>
+                    <td>
+                        <input type="text" required="required" name="last_name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" required="required" name="email">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="login" value="Inregistreaza-te">
+                    </td>
+                    <td>
+                        Ai deja cont? <a href ="/login">Logheaza-te</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>sau <a href ="/..">navigheaza fara cont</a></td>
+                </tr>
+            </table>
+             <p style="font-size:16px; color:red">{{ msg }}</p>
+        </form>
+    </center>
+
+</body>
+</html>

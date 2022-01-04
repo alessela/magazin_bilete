@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilete Accesibile - {{ event }}</title>
+</head>
+<body style="background-color:dodgerblue; font-family:arial,serif">
+<div style="display: flex; justify-content: space-between;">
+    <a href="http://127.0.0.1:8000/"><h1>Bilete Accesibile</h1></a>
+    {% block user %}
+        {% if user != None %}
+            <p> Bine ai venit, <b>{{ user.first_name }} {{ user.last_name }}</b>! <a href="http://127.0.0.1:8000/login">DELOGHEAZA-TE</a>
+                |
+                <a href="http://127.0.0.1:8000/account">DETALII CONT</a></p>
+        {% else %}
+            <p><a href="http://127.0.0.1:8000/login">LOGHEAZA-TE</a> | <a href="http://127.0.0.1:8000/signup">CREEAZA-TI
+                CONT</a></p>
+        {% endif %}
+    {% endblock %}
+</div>
+
+<h2>{{ event.nume }}</h2>
+<div class="container">
+    <style>
+        .container {
+            display: flex
+        }
+    </style>
+    <div><img src={{ event.imagine }} width="250"/></div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    <div>
+        <p><b>Locatie:</b> {{ event.locatie }}</p>
+        <p><b>Perioada:</b> {{ event.ora_inceput }} - {{ event.ora_sfarsit }}</p>
+        <p><b>Descriere:</b> {{ event.descriere }} </p>
+        <p><b>Artisti:</b>
+            {% block artists_block %}
+                {% for artist in artists %}
+                    {{ artist.nume }},
+                {% endfor %}
+            {% endblock %}
+        </p>
+    </div>
+</div>
+
+<h3>Cumpara bilet</h3>
+
+{% block tickets_block %}
+    <ul>
+        {% for ticket in tickets %}
+            <li>
+                {% if ticket.nr_locuri == 0 %}
+                    <p style="font-size: 20px"><b>{{ ticket.nume }}</b> - {{ ticket.descriere }} - {{ ticket.pret }} lei <label
+                            style="color: red">SOLD OUT</label></p>
+                {% elif user == None %}
+                    <p style="font-size: 20px"><b>{{ ticket.nume }}</b> - {{ ticket.descriere }} - {{ ticket.pret }} lei</p>
+                {% else %}
+                    <a href="/cumpara/{{ ticket.id }}" style="font-size: 20px"><b>{{ ticket.nume }}</b>
+                        - {{ ticket.descriere }} - {{ ticket.pret }} lei</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% if user == None %}
+        <p style="color: darkgreen">Pentru a putea cumpara bilete, te rugam sa te loghezi!</p>
+    {% endif %}
+{% endblock %}
+
+</body>
+</html>

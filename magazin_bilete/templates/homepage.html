@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilete Accesibile {{ title }}</title>
+</head>
+<style>
+#div2{width:200px;}
+</style>
+<script>
+    function getArtistOrLocation(){
+        window.location.href="http://127.0.0.1:8000/cauta/".concat(document.getElementById("search").value)}
+</script>
+
+<body style="background-color:dodgerblue; font-family:arial,serif">
+    <div style="display: flex; justify-content: space-between;">
+        <a href="http://127.0.0.1:8000/"><h1>Bilete Accesibile</h1></a>
+        {% block user %}
+            {% if user != None %}
+                <p> Bine ai venit, <b>{{ user.first_name }} {{ user.last_name }}</b>! <a href="http://127.0.0.1:8000/login">DELOGHEAZA-TE</a> |
+                <a href="http://127.0.0.1:8000/account">DETALII CONT</a></p>
+            {% else %}
+                <p> <a href="http://127.0.0.1:8000/login">LOGHEAZA-TE</a> | <a href="http://127.0.0.1:8000/signup">CREEAZA-TI CONT</a></p>
+            {% endif %}
+        {% endblock %}
+    </div>
+<center>
+    <input type="text" id="search" placeholder="Cauta artist, eveniment sau locatie" size="50">
+    <button onclick="getArtistOrLocation()">Cauta</button>
+    <p><label>Tip de eveniment:</label>
+        <select onchange="if (this.value) window.location.href=this.value">
+            <option value ="">alege</option>
+            {% block types_block %}
+                {% for event_type in event_types %}
+                    <option value="/tip/{{ event_type.id }}">{{ event_type.nume }}</option>
+                {% endfor %}
+            {% endblock types_block %}
+        </select></p>
+
+    <p><label>Oras:</label>
+        <select onchange="if (this.value) window.location.href=this.value">
+            <option value ="">alege</option>
+            {% block cities_block %}
+                {% for city in cities %}
+                    <option value="/oras/{{ city.id }}">{{ city.nume }}</option>
+                {% endfor %}
+            {% endblock cities_block %}
+        </select></p>
+
+    <p></p>
+    <h2>{{ title }}</h2>
+    <div class="container">
+    <style>
+        .container {
+            display: flex
+        }
+    </style>
+    {% block events_block %}
+        {% for event in events %}
+            <a href="/event/{{ event.id }}">
+                <div id="div2">
+                    <img src={{ event.imagine }} width="200"><br>
+                    <b>{{ event.nume }}</b><br>
+                </div>
+            </a>
+            <div>&nbsp;&nbsp;</div>
+        {% endfor %}
+    {% endblock events_block %}
+    </div>
+    <p>{{ no_events }}</p>
+    </center>
+</body>
+
+</html>
